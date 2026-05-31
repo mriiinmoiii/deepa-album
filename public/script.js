@@ -85,14 +85,14 @@ async function loadGallery() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", loadGallery);
+
 
 /* ============================================================
    UTILITIES
    ============================================================ */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-const PLACEHOLDER = "images/placeholder.svg";
+const PLACEHOLDER = "./placeholder.svg";
 const onImgErr = (img) => { img.onerror = null; img.src = PLACEHOLDER; };
 
 /* ============================================================
@@ -261,7 +261,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     const response = await fetch("/api/gallery");
 
-    const photos = await response.json();
+    const photos = (await response.json()).slice(0, 60);
 
     console.log("Gallery photos:", photos);
 
